@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class ReqController {
 
@@ -45,6 +48,20 @@ public class ReqController {
         demoDTO.setAge(11);
         model.addAttribute("demo", demoDTO);
         return "req5";
+    }
+
+    @GetMapping("/req6")
+    public String req6(Model model){
+        List<DemoDTO> demoDTOList = new ArrayList<>();
+        for(int i = 1; i<=10; i++){
+            DemoDTO demoDTO = new DemoDTO();
+            demoDTO.setId((long) i);
+            demoDTO.setName("name" + i);
+            demoDTO.setAge(10 + i);
+            demoDTOList.add(demoDTO);
+        }
+        model.addAttribute("demoList", demoDTOList);
+        return "req6";
     }
 }
 
